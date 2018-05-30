@@ -1,0 +1,19 @@
+@(increment: Form[IncrementForm])(implicit request: MessagesRequestHeader)
+
+@import helper._
+
+@request.flash.get("success").map { key =>
+   @request.messages(key)
+}
+
+@main("Welcome to Play") {
+
+  @form(routes.IncrementController.increment()) {
+		@inputText(increment("workflow_execution_id"))
+		@CSRF.formField
+
+		<div class="buttons">
+			<input type="submit" value="Increment"/>
+		</div>
+	}
+}

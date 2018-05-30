@@ -1,0 +1,23 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+# GET     /index                              controllers.WorkflowController.index
+GET     /index                         controllers.WorkflowController.index
+GET     /index2                        controllers.WorkflowExecutionController.index2
+GET     /index3                        controllers.IncrementController.index
+GET     /index4                        controllers.CheckIfFinishedController.index
+
+POST    /workflow                      controllers.WorkflowController.addWorkflow
+GET     /workflows                     controllers.WorkflowController.getWorkflows
+
+POST    /workflowExecution             controllers.WorkflowExecutionController.addWorkflowExecution
+GET     /workflowExecutions            controllers.WorkflowExecutionController.getWorkflowExecutions
+
+POST    /increment                     controllers.IncrementController.increment
+GET     /checkIfFinished               controllers.CheckIfFinishedController.checkIfFinished
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
