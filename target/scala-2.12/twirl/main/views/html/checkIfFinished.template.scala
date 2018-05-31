@@ -30,17 +30,18 @@ Seq[Any](format.raw/*2.1*/("""
    """),_display_(/*6.5*/request/*6.12*/.messages(key)),format.raw/*6.26*/("""
 """)))}),format.raw/*7.2*/("""
 
-"""),_display_(/*9.2*/main("Welcome to Play")/*9.25*/ {_display_(Seq[Any](format.raw/*9.27*/("""
+"""),_display_(/*9.2*/main("Tray.io task")/*9.22*/ {_display_(Seq[Any](format.raw/*9.24*/("""
 
   """),_display_(/*11.4*/form(routes.CheckIfFinishedController.checkIfFinished())/*11.60*/ {_display_(Seq[Any](format.raw/*11.62*/("""
 		"""),_display_(/*12.4*/inputText(checkIfFinished("workflow_execution_id"))),format.raw/*12.55*/("""
-		"""),_display_(/*13.4*/CSRF/*13.8*/.formField),format.raw/*13.18*/("""
 
-		"""),format.raw/*15.3*/("""<div class="buttons">
+		"""),format.raw/*14.3*/("""<div class="buttons">
 			<input type="submit" value="Check if Finished"/>
 		</div>
-	""")))}),format.raw/*18.3*/("""
-""")))}),format.raw/*19.2*/("""
+    <br>
+    <a href='/'>Back to index</a>
+	""")))}),format.raw/*19.3*/("""
+""")))}),format.raw/*20.2*/("""
 """))
       }
     }
@@ -57,11 +58,11 @@ Seq[Any](format.raw/*2.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Mon May 28 20:03:22 BST 2018
-                  SOURCE: /home/matthews/TRAY/trayio-task3/app/views/checkIfFinished.scala.html
-                  HASH: f2a2530dfad90738c5609380b259d313a1e2ff31
-                  MATRIX: 780->1|938->89|982->87|1009->105|1036->107|1050->114|1083->139|1129->148|1159->153|1174->160|1208->174|1239->176|1267->179|1298->202|1337->204|1368->209|1433->265|1473->267|1503->271|1575->322|1605->326|1617->330|1648->340|1679->344|1794->429|1826->431
-                  LINES: 21->1|24->3|27->2|28->4|29->5|29->5|29->5|29->5|30->6|30->6|30->6|31->7|33->9|33->9|33->9|35->11|35->11|35->11|36->12|36->12|37->13|37->13|37->13|39->15|42->18|43->19
+                  DATE: Wed May 30 22:55:31 BST 2018
+                  SOURCE: C:/Users/matthews/Documents/Stansa/TRAYIO/trayio-task/app/views/checkIfFinished.scala.html
+                  HASH: 508f9d7de9053ca4c00b7a9854d5755b2e16285e
+                  MATRIX: 780->1|938->89|982->87|1009->105|1036->107|1050->114|1083->139|1129->148|1159->153|1174->160|1208->174|1239->176|1267->179|1295->199|1334->201|1365->206|1430->262|1470->264|1500->268|1572->319|1603->323|1761->451|1793->453
+                  LINES: 21->1|24->3|27->2|28->4|29->5|29->5|29->5|29->5|30->6|30->6|30->6|31->7|33->9|33->9|33->9|35->11|35->11|35->11|36->12|36->12|38->14|43->19|44->20
                   -- GENERATED --
               */
           

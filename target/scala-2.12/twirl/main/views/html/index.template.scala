@@ -15,42 +15,60 @@ import play.api.templates.PlayMagic._
 import play.api.mvc._
 import play.api.data._
 
-object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[Form[CreateWorkflowForm],MessagesRequestHeader,play.twirl.api.HtmlFormat.Appendable] {
+object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template0[play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*1.2*/(workflow: Form[CreateWorkflowForm])(implicit request: MessagesRequestHeader):play.twirl.api.HtmlFormat.Appendable = {
+  def apply():play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
-/*4.2*/import helper._
 
 
-Seq[Any](format.raw/*2.1*/("""
+Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 
-"""),format.raw/*5.1*/("""
-"""),_display_(/*6.2*/request/*6.9*/.flash.get("success").map/*6.34*/ { key =>_display_(Seq[Any](format.raw/*6.43*/("""
-   """),_display_(/*7.5*/request/*7.12*/.messages(key)),format.raw/*7.26*/("""
-""")))}),format.raw/*8.2*/("""
+<html>
+    <head>
+        <title>Tray.io task</title>
+        <style> </style>
+      </head>
+        <link rel="shortcut icon" type="image/png" href=""""),_display_(/*8.59*/routes/*8.65*/.Assets.versioned("images/favicon.png")),format.raw/*8.104*/(""""/>
+    <body>
 
-"""),_display_(/*10.2*/main("Welcome to Play")/*10.25*/ {_display_(Seq[Any](format.raw/*10.27*/("""
+      <div>
+        <h1>Welcome to Tray.io task</h1>
+        <p>You are accessing the service over http.</p>
+        <h3>Follow the links:</h3>
+        <p>
+          <a href="/workflows">View workflows</a><br>
+          <a href="/workflowExecutions">View workflow executions</a><br>
+          <a href="/workflow">Add a workflow</a><br>
+          <a href="/workflowExecution">Add a workflow execution</a><br>
+          <a href="/increment">Increment a step</a><br>
+          <a href="/checkIfFinished">Check if finished</a><br>
+        </p>
 
-  """),_display_(/*12.4*/form(routes.WorkflowController.addWorkflow())/*12.49*/ {_display_(Seq[Any](format.raw/*12.51*/("""
-		"""),_display_(/*13.4*/inputText(workflow("number_of_steps"))),format.raw/*13.42*/("""
-		"""),_display_(/*14.4*/CSRF/*14.8*/.formField),format.raw/*14.18*/("""
+        <h3>Use REST endpoints:</h3>
+        <p>
+          <span>GET /workflows</span><br>
+          <span>GET /workflowExecutions</span><br>
+          <span>POST /workflow (format: '"""),format.raw/*28.42*/("""{"""),format.raw/*28.43*/(""""number_of_steps": 1"""),format.raw/*28.63*/("""}"""),format.raw/*28.64*/("""')</span><br>
+          <span>POST /workflowExecution (format: '"""),format.raw/*29.51*/("""{"""),format.raw/*29.52*/(""""workflow_id": 1"""),format.raw/*29.68*/("""}"""),format.raw/*29.69*/("""')</span><br>
+          <span>POST /increment (format: '"""),format.raw/*30.43*/("""{"""),format.raw/*30.44*/(""""workflow_execution_id": 1"""),format.raw/*30.70*/("""}"""),format.raw/*30.71*/("""')</span><br>
+          <span>GET /checkIfFinished (format: '"""),format.raw/*31.48*/("""{"""),format.raw/*31.49*/(""""workflow_execution_id": 1"""),format.raw/*31.75*/("""}"""),format.raw/*31.76*/("""')</span><br>
+        </p>
 
-		"""),format.raw/*16.3*/("""<div class="buttons">
-			<input type="submit" value="Add Workflow"/>
-		</div>
-	""")))}),format.raw/*19.3*/("""
+      </div>
 
-""")))}),format.raw/*21.2*/("""
+
+    </body>
+</html>
 """))
       }
     }
   }
 
-  def render(workflow:Form[CreateWorkflowForm],request:MessagesRequestHeader): play.twirl.api.HtmlFormat.Appendable = apply(workflow)(request)
+  def render(): play.twirl.api.HtmlFormat.Appendable = apply()
 
-  def f:((Form[CreateWorkflowForm]) => (MessagesRequestHeader) => play.twirl.api.HtmlFormat.Appendable) = (workflow) => (request) => apply(workflow)(request)
+  def f:(() => play.twirl.api.HtmlFormat.Appendable) = () => apply()
 
   def ref: this.type = this
 
@@ -59,11 +77,11 @@ Seq[Any](format.raw/*2.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Mon May 28 19:50:19 BST 2018
-                  SOURCE: /home/matthews/TRAY/trayio-task3/app/views/index.scala.html
-                  HASH: eb30d415da9332ea5fe311c3160085f63cba5232
-                  MATRIX: 769->1|919->82|963->79|991->98|1018->100|1032->107|1065->132|1111->141|1141->146|1156->153|1190->167|1221->169|1250->172|1282->195|1322->197|1353->202|1407->247|1447->249|1477->253|1536->291|1566->295|1578->299|1609->309|1640->313|1750->393|1783->396
-                  LINES: 21->1|24->4|27->2|29->5|30->6|30->6|30->6|30->6|31->7|31->7|31->7|32->8|34->10|34->10|34->10|36->12|36->12|36->12|37->13|37->13|38->14|38->14|38->14|40->16|43->19|45->21
+                  DATE: Wed May 30 22:56:40 BST 2018
+                  SOURCE: C:/Users/matthews/Documents/Stansa/TRAYIO/trayio-task/app/views/index.scala.html
+                  HASH: caf3bc7cc791747fa04583dcdb7ab0dce5fae267
+                  MATRIX: 811->0|1005->168|1019->174|1079->213|1847->953|1876->954|1924->974|1953->975|2045->1039|2074->1040|2118->1056|2147->1057|2231->1113|2260->1114|2314->1140|2343->1141|2432->1202|2461->1203|2515->1229|2544->1230
+                  LINES: 26->1|33->8|33->8|33->8|53->28|53->28|53->28|53->28|54->29|54->29|54->29|54->29|55->30|55->30|55->30|55->30|56->31|56->31|56->31|56->31
                   -- GENERATED --
               */
           

@@ -29,11 +29,12 @@ Seq[Any](format.raw/*2.1*/("""
 <html>
     <head>
         <title>"""),_display_(/*7.17*/title),format.raw/*7.22*/("""</title>
-        <link rel="shortcut icon" type="image/png" href=""""),_display_(/*8.59*/routes/*8.65*/.Assets.versioned("images/favicon.png")),format.raw/*8.104*/(""""/>
-    </head>
+        <style> </style>
+      </head>
+        <link rel="shortcut icon" type="image/png" href=""""),_display_(/*10.59*/routes/*10.65*/.Assets.versioned("images/favicon.png")),format.raw/*10.104*/(""""/>
     <body>
-        """),_display_(/*11.10*/content),format.raw/*11.17*/("""
-    """),format.raw/*12.5*/("""</body>
+        """),_display_(/*12.10*/content),format.raw/*12.17*/("""
+    """),format.raw/*13.5*/("""</body>
 </html>
 """))
       }
@@ -51,11 +52,11 @@ Seq[Any](format.raw/*2.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Sun May 27 23:44:25 BST 2018
-                  SOURCE: /home/matthews/TRAY/trayio-task3/app/views/main.scala.html
-                  HASH: 3ba878406d2303e78c7bc95b486136d1c7371770
-                  MATRIX: 733->1|857->32|884->33|961->84|986->89|1079->156|1093->162|1153->201|1216->237|1244->244|1276->249
-                  LINES: 21->1|26->2|27->3|31->7|31->7|32->8|32->8|32->8|35->11|35->11|36->12
+                  DATE: Wed May 30 21:08:15 BST 2018
+                  SOURCE: C:/Users/matthews/Documents/Stansa/TRAYIO/trayio-task/app/views/main.scala.html
+                  HASH: 768d10ef5ba8e6eac5061b1d41caa0a1d8bcb3eb
+                  MATRIX: 733->1|857->32|884->33|961->84|986->89|1119->195|1134->201|1195->240|1246->264|1274->271|1306->276
+                  LINES: 21->1|26->2|27->3|31->7|31->7|34->10|34->10|34->10|36->12|36->12|37->13
                   -- GENERATED --
               */
           

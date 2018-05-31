@@ -1,21 +1,38 @@
-@(workflow: Form[CreateWorkflowForm])(implicit request: MessagesRequestHeader)
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Tray.io task</title>
+        <style> </style>
+      </head>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")"/>
+    <body>
+
+      <div>
+        <h1>Welcome to Tray.io task</h1>
+        <p>You are accessing the service over http.</p>
+        <h3>Follow the links:</h3>
+        <p>
+          <a href="/workflows">View workflows</a><br>
+          <a href="/workflowExecutions">View workflow executions</a><br>
+          <a href="/workflow">Add a workflow</a><br>
+          <a href="/workflowExecution">Add a workflow execution</a><br>
+          <a href="/increment">Increment a step</a><br>
+          <a href="/checkIfFinished">Check if finished</a><br>
+        </p>
+
+        <h3>Use REST endpoints:</h3>
+        <p>
+          <span>GET /workflows</span><br>
+          <span>GET /workflowExecutions</span><br>
+          <span>POST /workflow (format: '{"number_of_steps": 1}')</span><br>
+          <span>POST /workflowExecution (format: '{"workflow_id": 1}')</span><br>
+          <span>POST /increment (format: '{"workflow_execution_id": 1}')</span><br>
+          <span>GET /checkIfFinished (format: '{"workflow_execution_id": 1}')</span><br>
+        </p>
+
+      </div>
 
 
-@import helper._
-
-@request.flash.get("success").map { key =>
-   @request.messages(key)
-}
-
-@main("Welcome to Play") {
-
-  @form(routes.WorkflowController.addWorkflow()) {
-		@inputText(workflow("number_of_steps"))
-		@CSRF.formField
-
-		<div class="buttons">
-			<input type="submit" value="Add Workflow"/>
-		</div>
-	}
-
-}
+    </body>
+</html>

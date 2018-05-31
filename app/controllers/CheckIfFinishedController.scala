@@ -9,6 +9,7 @@ import play.api.data.validation.Constraints._
 import play.api.i18n._
 import play.api.libs.json.Json
 import play.api.mvc._
+import org.joda.time.DateTime
 
 import scala.concurrent.{ExecutionContext, Future, Await}
 import scala.concurrent.duration._
@@ -35,16 +36,28 @@ class CheckIfFinishedController @Inject()(repo: WorkflowExecutionRepository,
         Future.successful(Ok(views.html.checkIfFinished(errorForm)))
       },
       workflow => {
-        if (Await.result(repo.getCurrentStep(workflow.workflow_execution_id), 3 seconds) >=
-          Await.result(repo2.getNumberOfSteps(workflow.workflow_execution_id), 3 seconds)) {
-           Future(Redirect(routes.CheckIfFinishedController.index).flashing("success" -> "workflow.Finished"))
+        if (repo.workflowExecutionExist(workflow.workflow_execution_id)) {
+          if (repo.checkDbIfFinished(workflow.workflow_execution_id)) {
+             val res = "Response: finished"
+             println(new DateTime().toString() + " " + res)
+             Future(Redirect(routes.CheckIfFinishedController.index).flashing("success" -> res))
+             Future(Ok(Json.toJson(res)))
+          } else {
+             val res = "Response: not finished"
+             println(new DateTime().toString() + " " + res)
+             Future(Redirect(routes.CheckIfFinishedController.index).flashing("success" -> res))
+             Future(Ok(Json.toJson(res)))
+          }
         } else {
-           Future(Redirect(routes.CheckIfFinishedController.index).flashing("success" -> "workflow.NotFinished"))
+          val res = "Error: incorrect workflow execution id"
+          println(new DateTime().toString() + " " + res)
+          Future(Redirect(routes.CheckIfFinishedController.index).flashing("success" -> res))
+          Future(Ok(Json.toJson(res)))
         }
       }
     )
   }
-
 }
+
 
 case class CheckIfFinishedForm(workflow_execution_id: Int)

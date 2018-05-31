@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/home/matthews/TRAY/trayio-task3/conf/routes
-// @DATE:Mon May 28 19:50:19 BST 2018
+// @SOURCE:C:/Users/matthews/Documents/Stansa/TRAYIO/trayio-task/conf/routes
+// @DATE:Wed May 30 21:26:32 BST 2018
 
 package router
 
@@ -13,36 +13,40 @@ import _root_.controllers.Assets.Asset
 
 class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
-  // @LINE:7
-  WorkflowController_4: controllers.WorkflowController,
-  // @LINE:8
-  WorkflowExecutionController_1: controllers.WorkflowExecutionController,
-  // @LINE:9
-  IncrementController_2: controllers.IncrementController,
-  // @LINE:10
-  CheckIfFinishedController_0: controllers.CheckIfFinishedController,
-  // @LINE:23
-  Assets_3: controllers.Assets,
+  // @LINE:1
+  IndexController_0: controllers.IndexController,
+  // @LINE:2
+  WorkflowController_5: controllers.WorkflowController,
+  // @LINE:3
+  WorkflowExecutionController_2: controllers.WorkflowExecutionController,
+  // @LINE:4
+  IncrementController_3: controllers.IncrementController,
+  // @LINE:5
+  CheckIfFinishedController_1: controllers.CheckIfFinishedController,
+  // @LINE:18
+  Assets_4: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
 
    @javax.inject.Inject()
    def this(errorHandler: play.api.http.HttpErrorHandler,
-    // @LINE:7
-    WorkflowController_4: controllers.WorkflowController,
-    // @LINE:8
-    WorkflowExecutionController_1: controllers.WorkflowExecutionController,
-    // @LINE:9
-    IncrementController_2: controllers.IncrementController,
-    // @LINE:10
-    CheckIfFinishedController_0: controllers.CheckIfFinishedController,
-    // @LINE:23
-    Assets_3: controllers.Assets
-  ) = this(errorHandler, WorkflowController_4, WorkflowExecutionController_1, IncrementController_2, CheckIfFinishedController_0, Assets_3, "/")
+    // @LINE:1
+    IndexController_0: controllers.IndexController,
+    // @LINE:2
+    WorkflowController_5: controllers.WorkflowController,
+    // @LINE:3
+    WorkflowExecutionController_2: controllers.WorkflowExecutionController,
+    // @LINE:4
+    IncrementController_3: controllers.IncrementController,
+    // @LINE:5
+    CheckIfFinishedController_1: controllers.CheckIfFinishedController,
+    // @LINE:18
+    Assets_4: controllers.Assets
+  ) = this(errorHandler, IndexController_0, WorkflowController_5, WorkflowExecutionController_2, IncrementController_3, CheckIfFinishedController_1, Assets_4, "/")
 
   def withPrefix(prefix: String): Routes = {
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, WorkflowController_4, WorkflowExecutionController_1, IncrementController_2, CheckIfFinishedController_0, Assets_3, prefix)
+    new Routes(errorHandler, IndexController_0, WorkflowController_5, WorkflowExecutionController_2, IncrementController_3, CheckIfFinishedController_1, Assets_4, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -50,10 +54,11 @@ class Routes(
   }
 
   def documentation = List(
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """index""", """controllers.WorkflowController.index"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """index2""", """controllers.WorkflowExecutionController.index2"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """index3""", """controllers.IncrementController.index"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """index4""", """controllers.CheckIfFinishedController.index"""),
+    ("""GET""", this.prefix, """controllers.IndexController.index"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """workflow""", """controllers.WorkflowController.index"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """workflowExecution""", """controllers.WorkflowExecutionController.index"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """increment""", """controllers.IncrementController.index"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """checkiffinished""", """controllers.CheckIfFinishedController.index"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """workflow""", """controllers.WorkflowController.addWorkflow"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """workflows""", """controllers.WorkflowController.getWorkflows"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """workflowExecution""", """controllers.WorkflowExecutionController.addWorkflowExecution"""),
@@ -68,85 +73,102 @@ class Routes(
   }}
 
 
-  // @LINE:7
-  private[this] lazy val controllers_WorkflowController_index0_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("index")))
+  // @LINE:1
+  private[this] lazy val controllers_IndexController_index0_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix)))
   )
-  private[this] lazy val controllers_WorkflowController_index0_invoker = createInvoker(
-    WorkflowController_4.index,
+  private[this] lazy val controllers_IndexController_index0_invoker = createInvoker(
+    IndexController_0.index,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.IndexController",
+      "index",
+      Nil,
+      "GET",
+      this.prefix + """""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:2
+  private[this] lazy val controllers_WorkflowController_index1_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("workflow")))
+  )
+  private[this] lazy val controllers_WorkflowController_index1_invoker = createInvoker(
+    WorkflowController_5.index,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.WorkflowController",
       "index",
       Nil,
       "GET",
-      this.prefix + """index""",
-      """ Home page
- GET     /index                              controllers.WorkflowController.index""",
-      Seq()
-    )
-  )
-
-  // @LINE:8
-  private[this] lazy val controllers_WorkflowExecutionController_index21_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("index2")))
-  )
-  private[this] lazy val controllers_WorkflowExecutionController_index21_invoker = createInvoker(
-    WorkflowExecutionController_1.index2,
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.WorkflowExecutionController",
-      "index2",
-      Nil,
-      "GET",
-      this.prefix + """index2""",
+      this.prefix + """workflow""",
       """""",
       Seq()
     )
   )
 
-  // @LINE:9
-  private[this] lazy val controllers_IncrementController_index2_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("index3")))
+  // @LINE:3
+  private[this] lazy val controllers_WorkflowExecutionController_index2_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("workflowExecution")))
   )
-  private[this] lazy val controllers_IncrementController_index2_invoker = createInvoker(
-    IncrementController_2.index,
+  private[this] lazy val controllers_WorkflowExecutionController_index2_invoker = createInvoker(
+    WorkflowExecutionController_2.index,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.WorkflowExecutionController",
+      "index",
+      Nil,
+      "GET",
+      this.prefix + """workflowExecution""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:4
+  private[this] lazy val controllers_IncrementController_index3_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("increment")))
+  )
+  private[this] lazy val controllers_IncrementController_index3_invoker = createInvoker(
+    IncrementController_3.index,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.IncrementController",
       "index",
       Nil,
       "GET",
-      this.prefix + """index3""",
+      this.prefix + """increment""",
       """""",
       Seq()
     )
   )
 
-  // @LINE:10
-  private[this] lazy val controllers_CheckIfFinishedController_index3_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("index4")))
+  // @LINE:5
+  private[this] lazy val controllers_CheckIfFinishedController_index4_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("checkiffinished")))
   )
-  private[this] lazy val controllers_CheckIfFinishedController_index3_invoker = createInvoker(
-    CheckIfFinishedController_0.index,
+  private[this] lazy val controllers_CheckIfFinishedController_index4_invoker = createInvoker(
+    CheckIfFinishedController_1.index,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.CheckIfFinishedController",
       "index",
       Nil,
       "GET",
-      this.prefix + """index4""",
+      this.prefix + """checkiffinished""",
       """""",
       Seq()
     )
   )
 
-  // @LINE:12
-  private[this] lazy val controllers_WorkflowController_addWorkflow4_route = Route("POST",
+  // @LINE:7
+  private[this] lazy val controllers_WorkflowController_addWorkflow5_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("workflow")))
   )
-  private[this] lazy val controllers_WorkflowController_addWorkflow4_invoker = createInvoker(
-    WorkflowController_4.addWorkflow,
+  private[this] lazy val controllers_WorkflowController_addWorkflow5_invoker = createInvoker(
+    WorkflowController_5.addWorkflow,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.WorkflowController",
@@ -159,12 +181,12 @@ class Routes(
     )
   )
 
-  // @LINE:13
-  private[this] lazy val controllers_WorkflowController_getWorkflows5_route = Route("GET",
+  // @LINE:8
+  private[this] lazy val controllers_WorkflowController_getWorkflows6_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("workflows")))
   )
-  private[this] lazy val controllers_WorkflowController_getWorkflows5_invoker = createInvoker(
-    WorkflowController_4.getWorkflows,
+  private[this] lazy val controllers_WorkflowController_getWorkflows6_invoker = createInvoker(
+    WorkflowController_5.getWorkflows,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.WorkflowController",
@@ -177,12 +199,12 @@ class Routes(
     )
   )
 
-  // @LINE:15
-  private[this] lazy val controllers_WorkflowExecutionController_addWorkflowExecution6_route = Route("POST",
+  // @LINE:10
+  private[this] lazy val controllers_WorkflowExecutionController_addWorkflowExecution7_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("workflowExecution")))
   )
-  private[this] lazy val controllers_WorkflowExecutionController_addWorkflowExecution6_invoker = createInvoker(
-    WorkflowExecutionController_1.addWorkflowExecution,
+  private[this] lazy val controllers_WorkflowExecutionController_addWorkflowExecution7_invoker = createInvoker(
+    WorkflowExecutionController_2.addWorkflowExecution,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.WorkflowExecutionController",
@@ -195,12 +217,12 @@ class Routes(
     )
   )
 
-  // @LINE:16
-  private[this] lazy val controllers_WorkflowExecutionController_getWorkflowExecutions7_route = Route("GET",
+  // @LINE:11
+  private[this] lazy val controllers_WorkflowExecutionController_getWorkflowExecutions8_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("workflowExecutions")))
   )
-  private[this] lazy val controllers_WorkflowExecutionController_getWorkflowExecutions7_invoker = createInvoker(
-    WorkflowExecutionController_1.getWorkflowExecutions,
+  private[this] lazy val controllers_WorkflowExecutionController_getWorkflowExecutions8_invoker = createInvoker(
+    WorkflowExecutionController_2.getWorkflowExecutions,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.WorkflowExecutionController",
@@ -213,12 +235,12 @@ class Routes(
     )
   )
 
-  // @LINE:18
-  private[this] lazy val controllers_IncrementController_increment8_route = Route("POST",
+  // @LINE:13
+  private[this] lazy val controllers_IncrementController_increment9_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("increment")))
   )
-  private[this] lazy val controllers_IncrementController_increment8_invoker = createInvoker(
-    IncrementController_2.increment,
+  private[this] lazy val controllers_IncrementController_increment9_invoker = createInvoker(
+    IncrementController_3.increment,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.IncrementController",
@@ -231,12 +253,12 @@ class Routes(
     )
   )
 
-  // @LINE:19
-  private[this] lazy val controllers_CheckIfFinishedController_checkIfFinished9_route = Route("GET",
+  // @LINE:14
+  private[this] lazy val controllers_CheckIfFinishedController_checkIfFinished10_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("checkIfFinished")))
   )
-  private[this] lazy val controllers_CheckIfFinishedController_checkIfFinished9_invoker = createInvoker(
-    CheckIfFinishedController_0.checkIfFinished,
+  private[this] lazy val controllers_CheckIfFinishedController_checkIfFinished10_invoker = createInvoker(
+    CheckIfFinishedController_1.checkIfFinished,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.CheckIfFinishedController",
@@ -249,12 +271,12 @@ class Routes(
     )
   )
 
-  // @LINE:23
-  private[this] lazy val controllers_Assets_versioned10_route = Route("GET",
+  // @LINE:18
+  private[this] lazy val controllers_Assets_versioned11_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned10_invoker = createInvoker(
-    Assets_3.versioned(fakeValue[String], fakeValue[Asset]),
+  private[this] lazy val controllers_Assets_versioned11_invoker = createInvoker(
+    Assets_4.versioned(fakeValue[String], fakeValue[Asset]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.Assets",
@@ -270,70 +292,76 @@ class Routes(
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
-    // @LINE:7
-    case controllers_WorkflowController_index0_route(params@_) =>
+    // @LINE:1
+    case controllers_IndexController_index0_route(params@_) =>
       call { 
-        controllers_WorkflowController_index0_invoker.call(WorkflowController_4.index)
+        controllers_IndexController_index0_invoker.call(IndexController_0.index)
+      }
+  
+    // @LINE:2
+    case controllers_WorkflowController_index1_route(params@_) =>
+      call { 
+        controllers_WorkflowController_index1_invoker.call(WorkflowController_5.index)
+      }
+  
+    // @LINE:3
+    case controllers_WorkflowExecutionController_index2_route(params@_) =>
+      call { 
+        controllers_WorkflowExecutionController_index2_invoker.call(WorkflowExecutionController_2.index)
+      }
+  
+    // @LINE:4
+    case controllers_IncrementController_index3_route(params@_) =>
+      call { 
+        controllers_IncrementController_index3_invoker.call(IncrementController_3.index)
+      }
+  
+    // @LINE:5
+    case controllers_CheckIfFinishedController_index4_route(params@_) =>
+      call { 
+        controllers_CheckIfFinishedController_index4_invoker.call(CheckIfFinishedController_1.index)
+      }
+  
+    // @LINE:7
+    case controllers_WorkflowController_addWorkflow5_route(params@_) =>
+      call { 
+        controllers_WorkflowController_addWorkflow5_invoker.call(WorkflowController_5.addWorkflow)
       }
   
     // @LINE:8
-    case controllers_WorkflowExecutionController_index21_route(params@_) =>
+    case controllers_WorkflowController_getWorkflows6_route(params@_) =>
       call { 
-        controllers_WorkflowExecutionController_index21_invoker.call(WorkflowExecutionController_1.index2)
-      }
-  
-    // @LINE:9
-    case controllers_IncrementController_index2_route(params@_) =>
-      call { 
-        controllers_IncrementController_index2_invoker.call(IncrementController_2.index)
+        controllers_WorkflowController_getWorkflows6_invoker.call(WorkflowController_5.getWorkflows)
       }
   
     // @LINE:10
-    case controllers_CheckIfFinishedController_index3_route(params@_) =>
+    case controllers_WorkflowExecutionController_addWorkflowExecution7_route(params@_) =>
       call { 
-        controllers_CheckIfFinishedController_index3_invoker.call(CheckIfFinishedController_0.index)
+        controllers_WorkflowExecutionController_addWorkflowExecution7_invoker.call(WorkflowExecutionController_2.addWorkflowExecution)
       }
   
-    // @LINE:12
-    case controllers_WorkflowController_addWorkflow4_route(params@_) =>
+    // @LINE:11
+    case controllers_WorkflowExecutionController_getWorkflowExecutions8_route(params@_) =>
       call { 
-        controllers_WorkflowController_addWorkflow4_invoker.call(WorkflowController_4.addWorkflow)
+        controllers_WorkflowExecutionController_getWorkflowExecutions8_invoker.call(WorkflowExecutionController_2.getWorkflowExecutions)
       }
   
     // @LINE:13
-    case controllers_WorkflowController_getWorkflows5_route(params@_) =>
+    case controllers_IncrementController_increment9_route(params@_) =>
       call { 
-        controllers_WorkflowController_getWorkflows5_invoker.call(WorkflowController_4.getWorkflows)
+        controllers_IncrementController_increment9_invoker.call(IncrementController_3.increment)
       }
   
-    // @LINE:15
-    case controllers_WorkflowExecutionController_addWorkflowExecution6_route(params@_) =>
+    // @LINE:14
+    case controllers_CheckIfFinishedController_checkIfFinished10_route(params@_) =>
       call { 
-        controllers_WorkflowExecutionController_addWorkflowExecution6_invoker.call(WorkflowExecutionController_1.addWorkflowExecution)
-      }
-  
-    // @LINE:16
-    case controllers_WorkflowExecutionController_getWorkflowExecutions7_route(params@_) =>
-      call { 
-        controllers_WorkflowExecutionController_getWorkflowExecutions7_invoker.call(WorkflowExecutionController_1.getWorkflowExecutions)
+        controllers_CheckIfFinishedController_checkIfFinished10_invoker.call(CheckIfFinishedController_1.checkIfFinished)
       }
   
     // @LINE:18
-    case controllers_IncrementController_increment8_route(params@_) =>
-      call { 
-        controllers_IncrementController_increment8_invoker.call(IncrementController_2.increment)
-      }
-  
-    // @LINE:19
-    case controllers_CheckIfFinishedController_checkIfFinished9_route(params@_) =>
-      call { 
-        controllers_CheckIfFinishedController_checkIfFinished9_invoker.call(CheckIfFinishedController_0.checkIfFinished)
-      }
-  
-    // @LINE:23
-    case controllers_Assets_versioned10_route(params@_) =>
+    case controllers_Assets_versioned11_route(params@_) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned10_invoker.call(Assets_3.versioned(path, file))
+        controllers_Assets_versioned11_invoker.call(Assets_4.versioned(path, file))
       }
   }
 }

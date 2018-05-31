@@ -6,6 +6,7 @@ import javax.inject.{Singleton, Inject}
 
 import akka.actor.ActorSystem
 import com.google.inject.AbstractModule
+import org.joda.time.DateTime
 
 import play.api.inject.ApplicationLifecycle
 
@@ -28,21 +29,18 @@ class RecurrentTask @Inject() (actorSystem: ActorSystem,
                               ) {
 
   // Scheduling the job using the injected ActorSystem
-  actorSystem.scheduler.schedule(1.second, 20.second) {
-    println("Cleanup job running...")
-    val workflowExecutionsToClear = repo.getLastMinuteIds()
+  actorSystem.scheduler.schedule(1.second, 60.second) {
+    println(new DateTime().toString() + " Cleanup job running...")
+    val workflowExecutionsToClear = repo.getOldIds()
     workflowExecutionsToClear.map{ case r => for (c <- r) {
-        // Check if finished
-        println("Clearing WorkflowExecution id: " + c.id)
-        repo.deleteWorkflowExecution(c.id)
+        val currentId = c.id
+        //println(currentId)
+        if (repo.checkDbIfFinished(currentId)) {
+          println(new DateTime().toString() + " Clearing WorkflowExecution id: " + currentId)
+          repo.deleteWorkflowExecution(currentId)
+        }
       }
     }
-
-    //workflowExecutionsToClear onSuccess { case x => println(x)}
-
-    // if (Await.result(repo.returnCurrentStep(workflow.workflow_execution_id), 3 seconds) >=
-    //   Await.result(repo2.getNumberOfSteps(workflow.workflow_execution_id), 3 seconds)) {
-    // NEED TO REFACTOR THIS AS FUNCTION
   }
 
   // This is necessary to avoid thread leaks

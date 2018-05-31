@@ -1,16 +1,16 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/home/matthews/TRAY/trayio-task3/conf/routes
-// @DATE:Mon May 28 19:50:19 BST 2018
+// @SOURCE:C:/Users/matthews/Documents/Stansa/TRAYIO/trayio-task/conf/routes
+// @DATE:Wed May 30 21:26:32 BST 2018
 
 import play.api.routing.JavaScriptReverseRoute
 
 
 import _root_.controllers.Assets.Asset
 
-// @LINE:7
+// @LINE:1
 package controllers.javascript {
 
-  // @LINE:10
+  // @LINE:5
   class ReverseCheckIfFinishedController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -18,7 +18,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:19
+    // @LINE:14
     def checkIfFinished: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.CheckIfFinishedController.checkIfFinished",
       """
@@ -28,19 +28,19 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:10
+    // @LINE:5
     def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.CheckIfFinishedController.index",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "index4"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "checkiffinished"})
         }
       """
     )
   
   }
 
-  // @LINE:23
+  // @LINE:18
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -48,7 +48,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:23
+    // @LINE:18
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -60,7 +60,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:7
+  // @LINE:2
   class ReverseWorkflowController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -68,17 +68,17 @@ package controllers.javascript {
     }
 
   
-    // @LINE:7
+    // @LINE:2
     def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.index",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "index"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "workflow"})
         }
       """
     )
   
-    // @LINE:13
+    // @LINE:8
     def getWorkflows: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.getWorkflows",
       """
@@ -88,7 +88,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:12
+    // @LINE:7
     def addWorkflow: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowController.addWorkflow",
       """
@@ -100,7 +100,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:8
+  // @LINE:3
   class ReverseWorkflowExecutionController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -108,7 +108,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:15
+    // @LINE:10
     def addWorkflowExecution: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowExecutionController.addWorkflowExecution",
       """
@@ -118,17 +118,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:8
-    def index2: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.WorkflowExecutionController.index2",
+    // @LINE:3
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.WorkflowExecutionController.index",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "index2"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "workflowExecution"})
         }
       """
     )
   
-    // @LINE:16
+    // @LINE:11
     def getWorkflowExecutions: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WorkflowExecutionController.getWorkflowExecutions",
       """
@@ -140,7 +140,27 @@ package controllers.javascript {
   
   }
 
-  // @LINE:9
+  // @LINE:1
+  class ReverseIndexController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:1
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.IndexController.index",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + """"})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:4
   class ReverseIncrementController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -148,7 +168,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:18
+    // @LINE:13
     def increment: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.IncrementController.increment",
       """
@@ -158,12 +178,12 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:9
+    // @LINE:4
     def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.IncrementController.index",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "index3"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "increment"})
         }
       """
     )

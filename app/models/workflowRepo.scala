@@ -4,7 +4,8 @@ import javax.inject.{ Inject, Singleton }
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
-import scala.concurrent.{ Future, ExecutionContext }
+import scala.concurrent.{ Future, ExecutionContext, Await }
+import scala.concurrent.duration._
 
 /**
  * A repository for workflows.
@@ -22,7 +23,7 @@ class WorkflowRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(im
   import profile.api._
 
   /**
-   * Here we define the table. It will have a name of workflows
+   * Here we define the table.
    */
   private class WorkflowsTable(tag: Tag) extends Table[Workflow](tag, "workflow") {
 
@@ -38,7 +39,7 @@ class WorkflowRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(im
   }
 
   /**
-   * The starting point for all queries on the people table.
+   * The starting point for all queries on the table.
    */
   private val workflows = TableQuery[WorkflowsTable]
 
@@ -59,6 +60,10 @@ class WorkflowRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(im
     val q: Query[WorkflowsTable, Workflow, Seq] = workflows.filter(_.id === id)
     val result: Future[Seq[Workflow]] = db.run(q.result)
     result.flatMap( x => Future(x.head.number_of_steps) )
+  }
+
+  def workflowExist(id: Long): Boolean = {
+    Await.result(db.run(workflows.filter(i => i.id === id).exists.result), 3 seconds)
   }
 
   def list(): Future[Seq[Workflow]] = db.run {

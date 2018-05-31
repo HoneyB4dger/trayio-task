@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/home/matthews/TRAY/trayio-task3/conf/routes
-// @DATE:Mon May 28 19:50:19 BST 2018
+// @SOURCE:C:/Users/matthews/Documents/Stansa/TRAYIO/trayio-task/conf/routes
+// @DATE:Wed May 30 21:26:32 BST 2018
 
 
 package router {

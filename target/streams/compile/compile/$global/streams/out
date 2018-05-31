@@ -1,4 +1,6 @@
-[0m[[0m[33mwarn[0m] [0m[0m/home/matthews/TRAY/trayio-task3/app/models/workflowExecutionRepo.scala:6:15: imported `WorkflowRepository' is permanently hidden by definition of class WorkflowRepository in package models[0m
-[0m[[0m[33mwarn[0m] [0m[0mimport models.WorkflowRepository[0m
-[0m[[0m[33mwarn[0m] [0m[0m              ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\matthews\Documents\Stansa\TRAYIO\trayio-task\app\controllers\WorkflowExecutionController.scala:56:15: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : play.api.mvc.Result[0m
+[0m[[0m[31merror[0m] [0m[0m required: scala.concurrent.Future[play.api.mvc.Result][0m
+[0m[[0m[31merror[0m] [0m[0m            Ok(Json.toJson(res))[0m
+[0m[[0m[31merror[0m] [0m[0m              ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

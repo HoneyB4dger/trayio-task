@@ -1,0 +1,22 @@
+@(workflow: Form[CreateWorkflowForm])(implicit request: MessagesRequestHeader)
+
+
+@import helper._
+
+@request.flash.get("success").map { key =>
+   @request.messages(key)
+}
+
+@main("Tray.io task") {
+
+  @form(routes.WorkflowController.addWorkflow()) {
+		@inputText(workflow("number_of_steps"))
+    
+		<div class="buttons">
+			<input type="submit" value="Add Workflow"/>
+		</div>
+    <br>
+    <a href='/'>Back to index</a>
+	}
+
+}

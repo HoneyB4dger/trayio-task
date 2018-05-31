@@ -30,17 +30,18 @@ Seq[Any](format.raw/*2.1*/("""
    """),_display_(/*6.5*/request/*6.12*/.messages(key)),format.raw/*6.26*/("""
 """)))}),format.raw/*7.2*/("""
 
-"""),_display_(/*9.2*/main("Welcome to Play")/*9.25*/ {_display_(Seq[Any](format.raw/*9.27*/("""
+"""),_display_(/*9.2*/main("Tray.io task")/*9.22*/ {_display_(Seq[Any](format.raw/*9.24*/("""
 
   """),_display_(/*11.4*/form(routes.IncrementController.increment())/*11.48*/ {_display_(Seq[Any](format.raw/*11.50*/("""
 		"""),_display_(/*12.4*/inputText(increment("workflow_execution_id"))),format.raw/*12.49*/("""
-		"""),_display_(/*13.4*/CSRF/*13.8*/.formField),format.raw/*13.18*/("""
 
-		"""),format.raw/*15.3*/("""<div class="buttons">
+		"""),format.raw/*14.3*/("""<div class="buttons">
 			<input type="submit" value="Increment"/>
 		</div>
-	""")))}),format.raw/*18.3*/("""
-""")))}),format.raw/*19.2*/("""
+    <br>
+    <a href='/'>Back to index</a>
+	""")))}),format.raw/*19.3*/("""
+""")))}),format.raw/*20.2*/("""
 """))
       }
     }
@@ -57,11 +58,11 @@ Seq[Any](format.raw/*2.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Mon May 28 20:03:37 BST 2018
-                  SOURCE: /home/matthews/TRAY/trayio-task3/app/views/increment.scala.html
-                  HASH: ee3dcbf7e24c8459a17737fbad3c6d41dcda70c5
-                  MATRIX: 768->1|914->77|958->75|985->93|1012->95|1026->102|1059->127|1105->136|1135->141|1150->148|1184->162|1215->164|1243->167|1274->190|1313->192|1344->197|1397->241|1437->243|1467->247|1533->292|1563->296|1575->300|1606->310|1637->314|1744->391|1776->393
-                  LINES: 21->1|24->3|27->2|28->4|29->5|29->5|29->5|29->5|30->6|30->6|30->6|31->7|33->9|33->9|33->9|35->11|35->11|35->11|36->12|36->12|37->13|37->13|37->13|39->15|42->18|43->19
+                  DATE: Wed May 30 22:55:31 BST 2018
+                  SOURCE: C:/Users/matthews/Documents/Stansa/TRAYIO/trayio-task/app/views/increment.scala.html
+                  HASH: 9109a83760fd19e80bc6ce644458cffb7e58fd9c
+                  MATRIX: 768->1|914->77|958->75|985->93|1012->95|1026->102|1059->127|1105->136|1135->141|1150->148|1184->162|1215->164|1243->167|1271->187|1310->189|1341->194|1394->238|1434->240|1464->244|1530->289|1561->293|1711->413|1743->415
+                  LINES: 21->1|24->3|27->2|28->4|29->5|29->5|29->5|29->5|30->6|30->6|30->6|31->7|33->9|33->9|33->9|35->11|35->11|35->11|36->12|36->12|38->14|43->19|44->20
                   -- GENERATED --
               */
           

@@ -3,21 +3,24 @@ package models
 import javax.inject.{ Inject, Singleton }
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
-import models.WorkflowRepository
 import org.joda.time.DateTime
+import models._
 
-import scala.concurrent.{ Future, ExecutionContext }
+import scala.concurrent.{ Future, ExecutionContext, Await }
+import scala.concurrent.duration._
 
 /**
- * A repository for workflows.
+ * A repository for workflowExecutions.
  *
  *    http://slick.lightbend.com/doc/3.0.0/queries.html  <- for queries guide
  *
- * @param dbConfigProvider The Play db config provider. Play will inject this for you.
+ * @param dbConfigProvider
  */
 
 @Singleton
-class WorkflowExecutionRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(implicit ec: ExecutionContext) {
+class WorkflowExecutionRepository @Inject() (dbConfigProvider: DatabaseConfigProvider,
+                                              repo: WorkflowRepository
+                                            )(implicit ec: ExecutionContext) {
   private val dbConfig = dbConfigProvider.get[JdbcProfile]
   import dbConfig._
   import profile.api._
@@ -45,6 +48,9 @@ class WorkflowExecutionRepository @Inject() (dbConfigProvider: DatabaseConfigPro
     workflowExecutions.result
   }
 
+  def workflowExecutionExist(id: Long): Boolean = {
+    Await.result(db.run(workflowExecutions.filter(i => i.id === id).exists.result), 3 seconds)
+  }
 
   def increment(id: Long): Future[Seq[WorkflowExecution]] = {
     val q: Query[WorkflowExecutionsTable, WorkflowExecution, Seq] = workflowExecutions.filter(_.id === id)
@@ -55,7 +61,6 @@ class WorkflowExecutionRepository @Inject() (dbConfigProvider: DatabaseConfigPro
     result
   }
 
-
   def getCurrentStep(id: Long): Future[Int] = {
     val q: Query[WorkflowExecutionsTable, WorkflowExecution, Seq] = workflowExecutions.filter(_.id === id)
     val result: Future[Seq[WorkflowExecution]] = db.run(q.result)
@@ -63,8 +68,13 @@ class WorkflowExecutionRepository @Inject() (dbConfigProvider: DatabaseConfigPro
     result.flatMap( x => Future(x.head.current_step_index) )
   }
 
+  def getWorkflowId(id: Long): Future[Long] = {
+    val q: Query[WorkflowExecutionsTable, WorkflowExecution, Seq] = workflowExecutions.filter(_.id === id)
+    val result: Future[Seq[WorkflowExecution]] = db.run(q.result)
+    result.flatMap( x => Future(x.head.workflow_id) )
+  }
 
-  def getLastMinuteIds(): Future[Seq[WorkflowExecution]] = {
+  def getOldIds(): Future[Seq[WorkflowExecution]] = {
     val dateTime: DateTime = new DateTime().minusMinutes(1);
     val q: Query[WorkflowExecutionsTable, WorkflowExecution, Seq] = workflowExecutions
             .filter(_.creation_timestamp < dateTime.toString())
@@ -72,6 +82,11 @@ class WorkflowExecutionRepository @Inject() (dbConfigProvider: DatabaseConfigPro
     result
   }
 
+  def checkDbIfFinished(workflow_execution_id: Long): Boolean = {
+    val workflowId = Await.result(getWorkflowId(workflow_execution_id), 3 seconds)
+    Await.result(getCurrentStep(workflow_execution_id), 3 seconds) >=
+    Await.result(repo.getNumberOfSteps(workflowId), 3 seconds)
+  }
 
   def deleteWorkflowExecution(id: Long): Unit = {
     val q: Query[WorkflowExecutionsTable, WorkflowExecution, Seq] = workflowExecutions.filter(_.id === id)
@@ -79,45 +94,5 @@ class WorkflowExecutionRepository @Inject() (dbConfigProvider: DatabaseConfigPro
     val affectedRowsCount: Future[Int] = db.run(action)
     val sql = action.statements.head
   }
- /**
-  *
-
-  def updateNameById(mId: Long) = {
-    val sql11: Future[Seq[(Long,Long,Int,String)]] = db.run(sql"""select * from workflow_execution; """.as[(Long,Long,Int,String)])
-    println(sql11)
-    sql11 onSuccess { case r => println("Updating: " + r)}
-    val q = for { l <- workflowExecutions if l.id === mId } yield l.current_step_index
-    val w = q.update(4)
-    val q1: Query[WorkflowExecutionsTable, WorkflowExecution, Seq] = workflowExecutions.filter(_.id === mId)
-    val result: Future[Seq[WorkflowExecution]] = db.run(q1.result)
-    result
-  }
-
-  def incrementStep(workflow_execution_id: Long): Future[Seq[WorkflowExecution]] = db.run {
-
-    print("*"*80)
-
-    //val q = for { c <- workflowExecutions if c.id === workflow_execution_id } yield c.current_step_index
-    //val updateAction = q.update(3)
-    //val sql = q.updateStatement
-
-    val newValue = WorkflowExecution(workflow_execution_id, 2, 2, "2");
-    workflowExecutions.filter(_.id === workflow_execution_id).update(newValue)
-    println("New value:")
-    println(newValue)
-    println("Filter:")
-    val qq = workflowExecutions.filter(_.id === workflow_execution_id).map(_ => ());
-    //for { c <- qq if println(c) }
-
-    println()
-    //.map(_.current_step_index)
-    print("*"*80)
-    workflowExecutions.result
-    //println(workflowExecutions.filter(_.id === workflow_execution_id))
-    //val updateAction = updateWorkflowExecution.update(4)
-    //val sql = updateWorkflowExecution.updateStatement
-    //workflowExecutions.result
-    //updateWorkflowExecution.workflow_id += 1;
-  }*/
 
 }

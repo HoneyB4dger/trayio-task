@@ -6,14 +6,15 @@
    @request.messages(key)
 }
 
-@main("Welcome to Play") {
+@main("Tray.io task") {
 
   @form(routes.IncrementController.increment()) {
 		@inputText(increment("workflow_execution_id"))
-		@CSRF.formField
 
 		<div class="buttons">
 			<input type="submit" value="Increment"/>
 		</div>
+    <br>
+    <a href='/'>Back to index</a>
 	}
 }

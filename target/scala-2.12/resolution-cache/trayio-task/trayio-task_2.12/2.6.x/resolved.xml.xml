@@ -4,7 +4,7 @@
 		module="trayio-task_2.12"
 		revision="2.6.x"
 		status="integration"
-		publication="20180530141109"
+		publication="20180531140250"
 	>
 		<description>
 		trayio-task
@@ -52,6 +52,7 @@
 		<dependency org="com.typesafe.play" name="play-slick_2.12" rev="3.0.3" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play" name="play-slick-evolutions_2.12" rev="3.0.3" conf="compile->default(compile)"/>
 		<dependency org="com.h2database" name="h2" rev="1.4.196" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.play" name="play-jdbc-evolutions_2.12" rev="2.6.13" conf="compile->default(compile)"/>
 		<dependency org="joda-time" name="joda-time" rev="2.9.9" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play" name="play-specs2_2.12" rev="2.6.13" conf="test->default(compile)"/>
 	</dependencies>

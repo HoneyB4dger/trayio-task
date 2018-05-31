@@ -1,13 +1,8 @@
-# Routes
-# This file defines all application routes (Higher priority routes first)
-# ~~~~
-
-# Home page
-# GET     /index                              controllers.WorkflowController.index
-GET     /index                         controllers.WorkflowController.index
-GET     /index2                        controllers.WorkflowExecutionController.index2
-GET     /index3                        controllers.IncrementController.index
-GET     /index4                        controllers.CheckIfFinishedController.index
+GET     /                              controllers.IndexController.index
+GET     /workflow                      controllers.WorkflowController.index
+GET     /workflowExecution             controllers.WorkflowExecutionController.index
+GET     /increment                     controllers.IncrementController.index
+GET     /checkiffinished               controllers.CheckIfFinishedController.index
 
 POST    /workflow                      controllers.WorkflowController.addWorkflow
 GET     /workflows                     controllers.WorkflowController.getWorkflows

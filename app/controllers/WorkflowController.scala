@@ -9,6 +9,7 @@ import play.api.data.validation.Constraints._
 import play.api.i18n._
 import play.api.libs.json.Json
 import play.api.mvc._
+import org.joda.time.DateTime
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -22,7 +23,7 @@ class WorkflowController @Inject()(repo: WorkflowRepository,
    */
   val workflowForm: Form[CreateWorkflowForm] = Form {
     mapping(
-      "number_of_steps" -> number.verifying(min(0), max(1024))
+      "number_of_steps" -> number.verifying(min(1), max(1024))
     )(CreateWorkflowForm.apply)(CreateWorkflowForm.unapply)
   }
 
@@ -30,7 +31,7 @@ class WorkflowController @Inject()(repo: WorkflowRepository,
    * The index action.
    */
   def index = Action { implicit request =>
-    Ok(views.html.index(workflowForm))
+    Ok(views.html.workflow(workflowForm))
   }
 
   /**
@@ -45,26 +46,28 @@ class WorkflowController @Inject()(repo: WorkflowRepository,
       // We also wrap the result in a successful future, since this action is synchronous, but we're required to return
       // a future because the person creation function returns a future.
       errorForm => {
-        Future.successful(Ok(views.html.index(errorForm)))
+        Future.successful(Ok(views.html.workflow(errorForm)))
       },
       // There were no errors in the from, so create the person.
       workflow => {
         repo.create(workflow.number_of_steps).map { _ =>
           // If successful, we simply redirect to the index page.
-          Redirect(routes.WorkflowController.index).flashing("success" -> "workflow.created")
+          val res = "Response: workflow created"
+          println(new DateTime().toString() + " " + res)
+          Redirect(routes.WorkflowController.index).flashing("success" -> res)
+          Ok(Json.toJson(res))
         }
       }
     )
   }
 
-  /**
-   * A REST endpoint that gets all the people as JSON.
-   */
+
   def getWorkflows = Action.async { implicit request =>
     repo.list().map { workflows =>
       Ok(Json.toJson(workflows))
     }
   }
+
 }
 
 /**

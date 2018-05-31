@@ -1,0 +1,20 @@
+@(workflowExecution: Form[CreateWorkflowExecutionForm])(implicit request: MessagesRequestHeader)
+
+@import helper._
+
+@request.flash.get("success").map { key =>
+   @request.messages(key)
+}
+
+@main("Tray.io task") {
+
+  @form(routes.WorkflowExecutionController.addWorkflowExecution()) {
+		@inputText(workflowExecution("workflow_id"))
+	
+		<div class="buttons">
+			<input type="submit" value="Add Workflow Execution"/>
+		</div>
+    <br>
+    <a href='/'>Back to index</a>
+	}
+}

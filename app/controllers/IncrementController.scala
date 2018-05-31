@@ -9,6 +9,7 @@ import play.api.data.validation.Constraints._
 import play.api.i18n._
 import play.api.libs.json.Json
 import play.api.mvc._
+import org.joda.time.DateTime
 
 import scala.concurrent.{ExecutionContext, Future, Await}
 import scala.concurrent.duration._
@@ -35,13 +36,23 @@ class IncrementController @Inject()(repo: WorkflowExecutionRepository,
         Future.successful(Ok(views.html.increment(errorForm)))
       },
       workflow => {
-        if (Await.result(repo.getCurrentStep(workflow.workflow_execution_id), 3 seconds) >=
-          Await.result(repo2.getNumberOfSteps(workflow.workflow_execution_id), 3 seconds)) {
-           Future(Redirect(routes.IncrementController.index).flashing("success" -> "workflow.alreadyMax"))
+        if (repo.workflowExecutionExist(workflow.workflow_execution_id)) {
+          if (repo.checkDbIfFinished(workflow.workflow_execution_id)) {
+             val res = "Error: already finished"
+             println(new DateTime().toString() + " " + res)
+             Future(Redirect(routes.IncrementController.index).flashing("success" -> res))
+             Future(Ok(Json.toJson(res)))
+          } else {
+            repo.increment(workflow.workflow_execution_id).map { _ =>
+              val res = "Response: workflow execution step index incremented"
+              println(new DateTime().toString() + " " + res)
+              Redirect(routes.IncrementController.index).flashing("success" -> res)
+              Ok(Json.toJson(res))}}
         } else {
-          repo.increment(workflow.workflow_execution_id).map { _ =>
-            Redirect(routes.IncrementController.index).flashing("success" -> "workflow.incremented")
-          }
+          val res = "Error: incorrect workflow execution id"
+          println(new DateTime().toString() + " " + res)
+          Future(Redirect(routes.IncrementController.index).flashing("success" -> res))
+          Future(Ok(Json.toJson(res)))
         }
       }
     )

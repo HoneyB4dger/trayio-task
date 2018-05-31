@@ -10,11 +10,14 @@ import play.api.i18n._
 import play.api.libs.json.Json
 import play.api.mvc._
 import java.util.Date
+import org.joda.time.DateTime
 import models._
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.{ Future, ExecutionContext, Await }
+import scala.concurrent.duration._
 
 class WorkflowExecutionController @Inject()(repo: WorkflowExecutionRepository,
+                                  repo2: WorkflowRepository,
                                   repoWorkflows: WorkflowRepository,
                                   cc: MessagesControllerComponents
                                 )(implicit ec: ExecutionContext)
@@ -22,43 +25,36 @@ class WorkflowExecutionController @Inject()(repo: WorkflowExecutionRepository,
 
   val workflowExecutionForm: Form[CreateWorkflowExecutionForm] = Form {
     mapping(
-        "workflow_id" -> number.verifying(min(0), max(1024)),
+        "workflow_id" -> number.verifying(min(0)),
         //"current_step_index" -> number.verifying(min(0), max(1024)),
         //"creation_timestamp" -> nonEmptyText
     )(CreateWorkflowExecutionForm.apply)(CreateWorkflowExecutionForm.unapply)
   }
 
-  def index2 = Action { implicit request =>
-    Ok(views.html.index2(workflowExecutionForm))
+  def index = Action { implicit request =>
+    Ok(views.html.workflowExecution(workflowExecutionForm))
   }
 
-  def workflowExist(workflow_id: Long) = {
-    var found = false;
-    repoWorkflows.list().map { future => {
-          future.map { w => {
-              if (w.id == workflow_id) true;
-              //println(w.id)
-              // TODO TODO TODO FIX THIS
-            }
-          }
-        }
-    }
-  }
-  //def exists(id : Int, name : String) : Future[Boolean] =
-  //    db.run(User.filter(i => i.id === id || i.name === name).exists.result)
 
   def addWorkflowExecution = Action.async { implicit request =>
     workflowExecutionForm.bindFromRequest.fold(
       errorForm => {
-        Future.successful(Ok(views.html.index2(errorForm)))
+        Future.successful(Ok(views.html.workflowExecution(errorForm)))
       },
       workflowExecution => {
         val now = new java.sql.Timestamp(new java.util.Date().getTime).toString();
-        //println(workflowExist(workflowExecution.workflow_id))
-        //println("-"*70)
-        repo.create(workflowExecution.workflow_id, 0, now).map { _ =>
-          Redirect(routes.WorkflowExecutionController.index2).flashing("success" -> "workflowExecution.created")
-        }
+        if (repo2.workflowExist(workflowExecution.workflow_id)) {
+          repo.create(workflowExecution.workflow_id, 0, now).map { _ =>
+            val res = "Response: workflow execution created"
+            println(new DateTime().toString() + " " + res)
+            Redirect(routes.WorkflowExecutionController.index).flashing("success" -> res)
+            Ok(Json.toJson(res))}
+        } else {
+            val res = "Error: incorrect workflow id"
+            println(new DateTime().toString() + " " + res)
+            Future(Redirect(routes.WorkflowExecutionController.index).flashing("success" -> res))
+            Future(Ok(Json.toJson(res)))
+          }
       }
     )
   }
@@ -68,6 +64,7 @@ class WorkflowExecutionController @Inject()(repo: WorkflowExecutionRepository,
       Ok(Json.toJson(workflowExecutions))
     }
   }
+
 }
 
 case class CreateWorkflowExecutionForm(workflow_id: Int)
