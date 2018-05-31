@@ -63,6 +63,8 @@ Additional functionality to consider:
 * Default port that the application runs on is 9000. You can change this in Play, however a better way would be to set up a proxy server (Apache/Nginx).
 * Interaction with the service takes place either via POST requests or http forms. This could be improved with [Swagger](https://github.com/swagger-api/swagger-codegen) which adds front end, documentation and testing functionality.
 * Security needs to be reviewed - need to add claims authentication.
+* Improve Play tests.
+* Need to convert the service into production setting and package.
 * Number of threads should be optimised for the machine the service is running on. 
 * Workflow execution model would benefit from an additional field - "finished". This would help with the cleanup.
 * Cleanup job could be improved - wait 1min after workflow execution has finished.

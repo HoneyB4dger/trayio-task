@@ -1,0 +1,13 @@
+2018-05-31 16:11:15,345 [WARN] from slick.basic.DatabaseConfig in play-dev-mode-akka.actor.default-dispatcher-2 - Use `profile` instead of `driver`. The latter is deprecated since Slick 3.2 and will be removed.
+2018-05-31 16:11:16,056 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-2 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2018-05-31 16:11:16,059 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-2 - Application started (Dev)
+2018-05-31 16:27:47,567 [WARN] from slick.basic.DatabaseConfig in scala-execution-context-global-13 - Use `profile` instead of `driver`. The latter is deprecated since Slick 3.2 and will be removed.
+2018-05-31 16:27:50,847 [WARN] from slick.basic.DatabaseConfig in scala-execution-context-global-14 - Use `profile` instead of `driver`. The latter is deprecated since Slick 3.2 and will be removed.
+2018-05-31 16:27:51,288 [WARN] from slick.basic.DatabaseConfig in scala-execution-context-global-14 - Use `profile` instead of `driver`. The latter is deprecated since Slick 3.2 and will be removed.
+2018-05-31 16:35:12,047 [WARN] from slick.basic.DatabaseConfig in scala-execution-context-global-17 - Use `profile` instead of `driver`. The latter is deprecated since Slick 3.2 and will be removed.
+2018-05-31 16:35:14,987 [WARN] from slick.basic.DatabaseConfig in scala-execution-context-global-17 - Use `profile` instead of `driver`. The latter is deprecated since Slick 3.2 and will be removed.
+2018-05-31 16:35:15,175 [WARN] from slick.basic.DatabaseConfig in scala-execution-context-global-15 - Use `profile` instead of `driver`. The latter is deprecated since Slick 3.2 and will be removed.

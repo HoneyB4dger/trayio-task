@@ -19,7 +19,7 @@ class WorkflowController @Inject()(repo: WorkflowRepository,
   extends MessagesAbstractController(cc) {
 
   /**
-   * The mapping for the person form.
+   * The mapping for the workflow form.
    */
   val workflowForm: Form[CreateWorkflowForm] = Form {
     mapping(
@@ -44,11 +44,11 @@ class WorkflowController @Inject()(repo: WorkflowRepository,
     workflowForm.bindFromRequest.fold(
       // The error function. We return the index page with the error form, which will render the errors.
       // We also wrap the result in a successful future, since this action is synchronous, but we're required to return
-      // a future because the person creation function returns a future.
+      // a future because the workflow creation function returns a future.
       errorForm => {
         Future.successful(Ok(views.html.workflow(errorForm)))
       },
-      // There were no errors in the from, so create the person.
+      // There were no errors in the from, so create the workflow.
       workflow => {
         repo.create(workflow.number_of_steps).map { _ =>
           // If successful, we simply redirect to the index page.
@@ -71,7 +71,7 @@ class WorkflowController @Inject()(repo: WorkflowRepository,
 }
 
 /**
- * The create person form.
+ * The create workflow form.
  *
  * Generally for forms, you should define separate objects to your models, since forms very often need to present data
  * in a different way to your models.  In this case, it doesn't make sense to have an id parameter in the form, since

@@ -46,8 +46,8 @@ class WorkflowRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(im
   /**
    * Create a workflow
    *
-   * This is an asynchronous operation, it will return a future of the created person, which can be used to obtain the
-   * id for that person.
+   * This is an asynchronous operation, it will return a future of the created workflow, which can be used to obtain the
+   * id for that workflow.
    */
   def create(number_of_steps: Int): Future[Workflow] = db.run {
     (workflows.map(p => (p.number_of_steps))
