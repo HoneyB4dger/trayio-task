@@ -51,7 +51,7 @@ Example call:
 
 
 ## Testing
-You can test the service manually by either interacting with the web interface or performing REST calls. To test the service performing under a higher load, you can use a Python script (`autoTests.py`). It sends a random REST call at a given interval. To use `python autoTests.py -t <number_of_calls> -d <delay_between_calls>`
+You can test the service manually by either interacting with the web interface or performing REST calls. To test the service performing under a higher load, you can use a Python script (`autoTests.py`). It sends a random REST call at a given interval. To use it: `python autoTests.py -t <number_of_calls> -d <delay_between_calls>`
 
 
 
@@ -59,11 +59,11 @@ You can test the service manually by either interacting with the web interface o
 
 Additional functionality to consider:
 
-* Using in memory database H2. This can be replace for another DB (for example PostgreSQL) by modifying build.sbt and application.conf files. Check evolutions settings so that the database is not dropped each time the service starts.
-* Default port that the application runs on is 9000. You can change this in Play, however a better way would be to set up a proxy server (Apache/Nginx).
+* Using in memory database H2. This can be replace with another database (for example PostgreSQL) by modifying build.sbt and application.conf files. Check evolutions settings so that the database is not dropped each time the service starts.
+* Default port that the application runs on is 9000. You can change this in Play, however, a better way would be to set up a proxy server (Apache/Nginx).
 * Interaction with the service takes place either via POST requests or http forms. This could be improved with [Swagger](https://github.com/swagger-api/swagger-codegen) which adds front end, documentation and testing functionality.
 * Security needs to be reviewed - need to add claims authentication.
-* Improve Play tests.
+* Improve Play tests by adding additional scenarios.
 * Need to convert the service into production setting and package.
 * Number of threads should be optimised for the machine the service is running on. 
 * Workflow execution model would benefit from an additional field - "finished". This would help with the cleanup.
