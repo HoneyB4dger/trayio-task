@@ -18,3 +18,6 @@ libraryDependencies += evolutions
 libraryDependencies += "joda-time" % "joda-time" % "2.9.9"
 
 libraryDependencies += specs2 % Test
+
+
+//EclipseKeys.preTasks := Seq(compile in Compile)
